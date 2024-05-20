@@ -131,7 +131,7 @@ int main()
     X f;
     auto* smaller = f.compare(&version1 , &version2);
     if (smaller)
-    std::cout << "the smaller one is << " << smaller->name << std::endl; //9
+        std::cout << "the smaller one is << " << smaller->name << std::endl;
     
     U <#name3#>;
     float updatedValue = 5.f;
