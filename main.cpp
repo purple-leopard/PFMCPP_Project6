@@ -58,9 +58,14 @@ Purpose:  This project will show you the difference between member functions and
 #include <string>
 struct T
 {
-    T(<#type name#> v, const char* <#variable name#>)   //1
-    //2
-    //3
+    T(float v, const char* identifier)
+    {
+        ballVelocity = v;
+        ballName = identifier;
+    }
+
+    float ballVelocity;
+    const char* ballName;
 };
 
 struct <#structName1#>                                //4
