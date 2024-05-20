@@ -60,12 +60,12 @@ struct T
 {
     T(int v, const char* identifier)
     {
-        ballVelocity = v;
-        ballName = identifier;
+        velocity = v;
+        name = identifier;
     }
 
-    int ballVelocity;
-    const char* ballName;
+    int velocity;
+    std::string name;
 };
 
 struct <#structName1#>                                //4
