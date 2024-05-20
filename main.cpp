@@ -136,7 +136,7 @@ int main()
     }
     else
     {
-        std::cout << "smaller == nullptr, either a == b or a/b == nullptr\n";
+        std::cout << "smaller == nullptr, either a == b or a/b == nullptr" << std::endl;
     }
     
     U <#name3#>;
