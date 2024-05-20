@@ -131,7 +131,13 @@ int main()
     X f;
     auto* smaller = f.compare(&version1 , &version2);
     if (smaller)
+    {
         std::cout << "the smaller one is << " << smaller->name << std::endl;
+    }
+    else
+    {
+        std::cout << "smaller == nullptr, either a == b or a/b == nullptr\n";
+    }
     
     U <#name3#>;
     float updatedValue = 5.f;
