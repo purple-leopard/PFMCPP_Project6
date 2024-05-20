@@ -60,11 +60,11 @@ struct T
 {
     T(int v, const char* identifier)
     {
-        amount = v;
+        value = v;
         name = identifier;
     }
 
-    int amount;
+    int value;
     std::string name;
 };
 
