@@ -128,8 +128,9 @@ int main()
     T version1(5, "earlier");
     T version2(3, "later");
     
-    <#structName1#> f;                                            //7
-    auto* smaller = f.compare( , );                              //8
+    X f;
+    auto* smaller = f.compare(&version1 , &version2);
+    if (smaller)
     std::cout << "the smaller one is << " << smaller->name << std::endl; //9
     
     U <#name3#>;
