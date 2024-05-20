@@ -125,8 +125,8 @@ struct <#structname2#>
 
 int main()
 {
-    T <#name1#>( , );                                             //6
-    T <#name2#>( , );                                             //6
+    T version1(5, "earlier");
+    T version2(3, "later");
     
     <#structName1#> f;                                            //7
     auto* smaller = f.compare( , );                              //8
