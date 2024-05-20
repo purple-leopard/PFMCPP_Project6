@@ -58,19 +58,19 @@ Purpose:  This project will show you the difference between member functions and
 #include <string>
 struct T
 {
-    T(int v, const char* identifier)
+    T(int v, const char* identifier) //1
     {
-        value = v;
-        name = identifier;
+        value = v; // 2
+        name = identifier; // 3
     }
 
     int value;
     std::string name;
 };
 
-struct X
+struct X // 4
 {
-    T* compare(T* a, T* b)
+    T* compare(T* a, T* b) // 5
     {
         if (a && b)
         {
@@ -90,7 +90,7 @@ struct U
     }
 };
 
-struct <#structname2#>
+struct W
 {
     static <#returntype#> <#staticFunctionA#>(U* that, <#type name#>* <#updatedValue#> )        //10
     {
@@ -125,18 +125,18 @@ struct <#structname2#>
 
 int main()
 {
-    T version1(5, "earlier");
-    T version2(3, "later");
+    T version1(5, "earlier"); // 6
+    T version2(3, "later"); // 6
     
-    X f;
-    auto* smaller = f.compare(&version1 , &version2);
+    X f; // 7
+    auto* smaller = f.compare(&version1 , &version2); // 8
     if (smaller)
     {
         std::cout << "the smaller one is << " << smaller->name << std::endl;
     }
     else
     {
-        std::cout << "smaller == nullptr, either a == b or a/b == nullptr" << std::endl;
+        std::cout << "smaller == nullptr, either a == b or a/b == nullptr" << std::endl; // 9
     }
     
     U <#name3#>;
