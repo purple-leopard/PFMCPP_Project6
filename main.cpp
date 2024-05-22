@@ -72,7 +72,7 @@ struct X // 4
 {
     T* compare(T* a, T* b) // 5
     {
-        if (a && b)
+        if (a != nullptr && b != nullptr)
         {
             if( a->value < b->value ) return a;
             if( a->value > b->value ) return b;
@@ -86,7 +86,7 @@ struct U
     float val1 { 2 }, val2 { 3 };
     float changeValue(float* updatedValue)      //12
     {
-        if (updatedValue)
+        if (updatedValue != nullptr)
         {
             std::cout << "U's val1 value: " << val1 << std::endl;
             val1 = *updatedValue;
@@ -114,7 +114,7 @@ struct W
 {
     static float changeValue(U* that, float* updatedValue)        //10
     {
-        if (that && updatedValue)
+        if (that != nullptr && updatedValue != nullptr)
         {
             std::cout << "U's val1 value: " << that->val1 << std::endl;
             that->val1 = *updatedValue;
@@ -162,7 +162,7 @@ int main()
     
     X f; // 7
     auto* smaller = f.compare(&version1 , &version2); // 8
-    if (smaller)
+    if (smaller != nullptr)
     {
         std::cout << "the smaller one is " << smaller->name << std::endl;
     }
