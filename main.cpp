@@ -160,8 +160,8 @@ int main()
     T version1(5, "five"); // 6
     T version2(3, "three"); // 6
     
-    X x; // 7
-    auto* smaller = x.compare(&version1 , &version2); // 8
+    X f; // 7
+    auto* smaller = f.compare(&version1 , &version2); // 8
     if (smaller)
     {
         std::cout << "the smaller one is " << smaller->name << std::endl;
