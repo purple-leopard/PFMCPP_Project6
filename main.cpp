@@ -83,10 +83,30 @@ struct X // 4
 
 struct U
 {
-    float <#name1#> { 0 }, <#name2#> { 0 };
-    <#returnType#> <#memberFunction#>(<#type name#>* <#updatedValue#>)      //12
+    float val1 { 2 }, val2 { 3 };
+    float changeValue(float* updatedValue)      //12
     {
-        
+        if (updatedValue)
+        {
+            std::cout << "U's val1 value: " << val1 << std::endl;
+            val1 = *updatedValue;
+            std::cout << "U's val1 updated value: " << val1 << std::endl;
+            while(std::abs(val2 - val1) > 0.001f)
+            {
+                if(val2 < val1)
+                {
+                    val2 += 0.0005f;
+                }
+                else
+                {
+                    val2 -= 0.0005f;
+                }
+            }
+            std::cout << "U's val2 updated value: " << val2 << std::endl;
+            return val2 * val1;
+        }
+        std::cout << "nullptr encountered\n";
+        return 0.0f;
     }
 };
 
@@ -104,7 +124,7 @@ struct W
                 /*
                  write something that makes the distance between that->val2 and that->val1 get smaller
                  */
-                if (that-> val2 < that->val1)
+                if(that-> val2 < that->val1)
                 {
                     that->val2 += 0.0005f;
                 }
@@ -116,6 +136,8 @@ struct W
             std::cout << "U's val2 updated value: " << that->val2 << std::endl;
             return that->val2 * that->val1;
         }
+        std::cout << "nullptr encountered\n";
+        return 0.0f;
     }
 };
         
@@ -135,24 +157,24 @@ struct W
 
 int main()
 {
-    T version1(5, "earlier"); // 6
-    T version2(3, "later"); // 6
+    T version1(5, "five"); // 6
+    T version2(3, "three"); // 6
     
-    X f; // 7
-    auto* smaller = f.compare(&version1 , &version2); // 8
+    X x; // 7
+    auto* smaller = x.compare(&version1 , &version2); // 8
     if (smaller)
     {
-        std::cout << "the smaller one is << " << smaller->name << std::endl;
+        std::cout << "the smaller one is " << smaller->name << std::endl;
     }
     else
     {
         std::cout << "smaller == nullptr, either a == b or a/b == nullptr" << std::endl; // 9
     }
     
-    U <#name3#>;
+    U u1;
     float updatedValue = 5.f;
-    std::cout << "[static func] <#name3#>'s multiplied values: " << W::changeValue(&U, &updatedValue) << std::endl;                  //11
+    std::cout << "[static func] u1's multiplied values: " << W::changeValue(&u1, &updatedValue) << std::endl;                  //11
     
-    U <#name4#>;
-    std::cout << "[member func] <#name4#>'s multiplied values: " << <#name4#>.<#memberFunction#>( &updatedValue ) << std::endl;
+    U u2;
+    std::cout << "[member func] u2's multiplied values: " << u2.changeValue( &updatedValue ) << std::endl;
 }
