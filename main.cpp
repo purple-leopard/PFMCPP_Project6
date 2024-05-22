@@ -93,7 +93,7 @@ struct U
             std::cout << "U's val1 updated value: " << val1 << std::endl;
             while(std::abs(val2 - val1) > 0.001f)
             {
-                if(val2 < val1)
+                if (val2 < val1)
                 {
                     val2 += 0.0005f;
                 }
@@ -124,7 +124,7 @@ struct W
                 /*
                  write something that makes the distance between that->val2 and that->val1 get smaller
                  */
-                if(that-> val2 < that->val1)
+                if (that-> val2 < that->val1)
                 {
                     that->val2 += 0.0005f;
                 }
