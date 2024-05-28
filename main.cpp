@@ -75,32 +75,27 @@ struct U
 
 struct W
 {
-    static float changeValue(U* that, float* updatedValue)        //10
+    static float changeValue(U& that, float& updatedValue)        //10
     {
-        if (that != nullptr && updatedValue != nullptr)
+        std::cout << "U's val1 value: " << that.val1 << std::endl;
+        that.val1 = updatedValue;
+        std::cout << "U's val1 updated value: " << that.val1 << std::endl;
+        while( std::abs(that.val2 - that.val1) > 0.001f )
         {
-            std::cout << "U's val1 value: " << that->val1 << std::endl;
-            that->val1 = *updatedValue;
-            std::cout << "U's val1 updated value: " << that->val1 << std::endl;
-            while( std::abs(that->val2 - that->val1) > 0.001f )
+            /*
+             write something that makes the distance between that->val2 and that->val1 get smaller
+             */
+            if (that.val2 < that.val1)
             {
-                /*
-                 write something that makes the distance between that->val2 and that->val1 get smaller
-                 */
-                if (that-> val2 < that->val1)
-                {
-                    that->val2 += 0.0005f;
-                }
-                else
-                {
-                    that->val2 -= 0.0005f;
-                }
+                that.val2 += 0.0005f;
             }
-            std::cout << "U's val2 updated value: " << that->val2 << std::endl;
-            return that->val2 * that->val1;
+            else
+            {
+                that.val2 -= 0.0005f;
+            }
         }
-        std::cout << "nullptr encountered\n";
-        return 0.0f;
+        std::cout << "U's val2 updated value: " << that.val2 << std::endl;
+        return that.val2 * that.val1;
     }
 };
         
