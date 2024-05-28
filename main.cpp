@@ -119,7 +119,7 @@ int main()
     T version2(3, "three"); // 6
     
     X f; // 7
-    auto* smaller = f.compare(&version1 , &version2); // 8
+    auto* smaller = f.compare(version1 , version2); // 8
     if (smaller != nullptr)
     {
         std::cout << "the smaller one is " << smaller->name << std::endl;
@@ -131,8 +131,8 @@ int main()
     
     U u1;
     float updatedValue = 5.f;
-    std::cout << "[static func] u1's multiplied values: " << W::changeValue(&u1, &updatedValue) << std::endl;                  //11
+    std::cout << "[static func] u1's multiplied values: " << W::changeValue(u1, updatedValue) << std::endl;                  //11
     
     U u2;
-    std::cout << "[member func] u2's multiplied values: " << u2.changeValue( &updatedValue ) << std::endl;
+    std::cout << "[member func] u2's multiplied values: " << u2.changeValue( updatedValue ) << std::endl;
 }
