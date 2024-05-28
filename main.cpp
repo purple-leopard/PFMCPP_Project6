@@ -41,13 +41,10 @@ struct T
 
 struct X // 4
 {
-    T* compare(T* a, T* b) // 5
+    T* compare(T& a, T& b) // 5
     {
-        if (a != nullptr && b != nullptr)
-        {
-            if( a->value < b->value ) return a;
-            if( a->value > b->value ) return b;
-        }
+        if( a.value < b.value ) return &a;
+        if( a.value > b.value ) return &b;
         return nullptr;
     }
 };
@@ -55,60 +52,50 @@ struct X // 4
 struct U
 {
     float val1 { 2 }, val2 { 3 };
-    float changeValue(float* updatedValue)      //12
+    float changeValue(float& updatedValue)      //12
     {
-        if (updatedValue != nullptr)
+        std::cout << "U's val1 value: " << val1 << std::endl;
+        val1 = updatedValue;
+        std::cout << "U's val1 updated value: " << val1 << std::endl;
+        while(std::abs(val2 - val1) > 0.001f)
         {
-            std::cout << "U's val1 value: " << val1 << std::endl;
-            val1 = *updatedValue;
-            std::cout << "U's val1 updated value: " << val1 << std::endl;
-            while(std::abs(val2 - val1) > 0.001f)
+            if (val2 < val1)
             {
-                if (val2 < val1)
-                {
-                    val2 += 0.0005f;
-                }
-                else
-                {
-                    val2 -= 0.0005f;
-                }
+                val2 += 0.0005f;
             }
-            std::cout << "U's val2 updated value: " << val2 << std::endl;
-            return val2 * val1;
+            else
+            {
+                val2 -= 0.0005f;
+            }
         }
-        std::cout << "nullptr encountered\n";
-        return 0.0f;
+        std::cout << "U's val2 updated value: " << val2 << std::endl;
+        return val2 * val1;
     }
 };
 
 struct W
 {
-    static float changeValue(U* that, float* updatedValue)        //10
+    static float changeValue(U& that, float& updatedValue)        //10
     {
-        if (that != nullptr && updatedValue != nullptr)
+        std::cout << "U's val1 value: " << that.val1 << std::endl;
+        that.val1 = updatedValue;
+        std::cout << "U's val1 updated value: " << that.val1 << std::endl;
+        while( std::abs(that.val2 - that.val1) > 0.001f )
         {
-            std::cout << "U's val1 value: " << that->val1 << std::endl;
-            that->val1 = *updatedValue;
-            std::cout << "U's val1 updated value: " << that->val1 << std::endl;
-            while( std::abs(that->val2 - that->val1) > 0.001f )
+            /*
+             write something that makes the distance between that->val2 and that->val1 get smaller
+             */
+            if (that.val2 < that.val1)
             {
-                /*
-                 write something that makes the distance between that->val2 and that->val1 get smaller
-                 */
-                if (that-> val2 < that->val1)
-                {
-                    that->val2 += 0.0005f;
-                }
-                else
-                {
-                    that->val2 -= 0.0005f;
-                }
+                that.val2 += 0.0005f;
             }
-            std::cout << "U's val2 updated value: " << that->val2 << std::endl;
-            return that->val2 * that->val1;
+            else
+            {
+                that.val2 -= 0.0005f;
+            }
         }
-        std::cout << "nullptr encountered\n";
-        return 0.0f;
+        std::cout << "U's val2 updated value: " << that.val2 << std::endl;
+        return that.val2 * that.val1;
     }
 };
         
@@ -132,20 +119,20 @@ int main()
     T version2(3, "three"); // 6
     
     X f; // 7
-    auto* smaller = f.compare(&version1 , &version2); // 8
+    auto* smaller = f.compare(version1 , version2); // 8
     if (smaller != nullptr)
     {
         std::cout << "the smaller one is " << smaller->name << std::endl;
     }
     else
     {
-        std::cout << "smaller == nullptr, either a == b or a/b == nullptr" << std::endl; // 9
+        std::cout << "smaller == nullptr, a == b" << std::endl; // 9
     }
     
     U u1;
     float updatedValue = 5.f;
-    std::cout << "[static func] u1's multiplied values: " << W::changeValue(&u1, &updatedValue) << std::endl;                  //11
+    std::cout << "[static func] u1's multiplied values: " << W::changeValue(u1, updatedValue) << std::endl;                  //11
     
     U u2;
-    std::cout << "[member func] u2's multiplied values: " << u2.changeValue( &updatedValue ) << std::endl;
+    std::cout << "[member func] u2's multiplied values: " << u2.changeValue( updatedValue ) << std::endl;
 }
