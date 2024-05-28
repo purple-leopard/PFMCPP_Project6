@@ -52,29 +52,24 @@ struct X // 4
 struct U
 {
     float val1 { 2 }, val2 { 3 };
-    float changeValue(float* updatedValue)      //12
+    float changeValue(float& updatedValue)      //12
     {
-        if (updatedValue != nullptr)
+        std::cout << "U's val1 value: " << val1 << std::endl;
+        val1 = updatedValue;
+        std::cout << "U's val1 updated value: " << val1 << std::endl;
+        while(std::abs(val2 - val1) > 0.001f)
         {
-            std::cout << "U's val1 value: " << val1 << std::endl;
-            val1 = *updatedValue;
-            std::cout << "U's val1 updated value: " << val1 << std::endl;
-            while(std::abs(val2 - val1) > 0.001f)
+            if (val2 < val1)
             {
-                if (val2 < val1)
-                {
-                    val2 += 0.0005f;
-                }
-                else
-                {
-                    val2 -= 0.0005f;
-                }
+                val2 += 0.0005f;
             }
-            std::cout << "U's val2 updated value: " << val2 << std::endl;
-            return val2 * val1;
+            else
+            {
+                val2 -= 0.0005f;
+            }
         }
-        std::cout << "nullptr encountered\n";
-        return 0.0f;
+        std::cout << "U's val2 updated value: " << val2 << std::endl;
+        return val2 * val1;
     }
 };
 
