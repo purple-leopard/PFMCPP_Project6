@@ -126,7 +126,7 @@ int main()
     }
     else
     {
-        std::cout << "smaller == nullptr, either a == b or a/b == nullptr" << std::endl; // 9
+        std::cout << "smaller == nullptr, a == b" << std::endl; // 9
     }
     
     U u1;
